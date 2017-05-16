@@ -55,7 +55,7 @@ void SymTable::addSymbol(Sym newSym) {
 
 void SymTable::printTable() {
     indent();
-    //cout << ">>> Symbol Table" << endl;
+    cout << ">>> Symbol Table" << endl;
     currentIndentLevel++;
     if (symbols.size() == 0) {
         indent();
@@ -85,7 +85,7 @@ void SymTable::printTable() {
                 indent();
                 cout << symbols[i].getNumOccs() << " additional occurrence(s) found:" << endl;
                 currentIndentLevel++;
-                for (int j = 0; j < symbols[i].getNumOccs(); j++) {
+                for (size_t j = 0; j < symbols[i].getNumOccs(); j++) {
                     indent();
                     cout << "Line: " << symbols[i].getOccLineNum(static_cast<int>(j));
                     indent(1);

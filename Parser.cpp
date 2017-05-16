@@ -11,6 +11,7 @@
 using namespace std;
 
 const static string PRT_LEVEL_FILL = "   ";
+static int funcCount = 0;
 
 Parser::Parser() {
     gmr = new Grammar();
@@ -311,7 +312,7 @@ void Parser::parseAST(Node* mum) {
 void Parser::newParseAST(Node* mom) {
     
     // print tree
-    cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" << endl;
+    cout << ++funcCount << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" << endl;
 //    printAST(mom);
     
     if (!mom) {
@@ -326,8 +327,10 @@ void Parser::newParseAST(Node* mom) {
     
     if (opCIx == -1) {
         // delete up
-        int cIx = mom->getIx();
-        mom->getParent()->removeChildAt(cIx);
+//        int cIx = mom->getIx();
+//        mom->getParent()->removeChildAt(cIx);
+        int cIx = mom->getParent()->getIx();
+        mom->getParent()->getParent()->removeChildAt(cIx);
         return;
     }
     
@@ -403,9 +406,11 @@ Node* Parser::makeAST() {
     // We are pointing at Pgm
     Node* mm = ast->getChild(0);
 
-    removeEpsRules(mm);
+//    removeEpsRules(mm);
 //    parseAST(mm);
     newParseAST(mm);
+    removeEpsRules(mm);
+    funcCount = 0;
 
 
     // Go to the bottom right most node
