@@ -312,7 +312,7 @@ void Parser::parseAST(Node* mum) {
 void Parser::newParseAST(Node* mom) {
     
     // print tree
-    cout << ++funcCount << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" << endl;
+    // cout << ++funcCount << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" << endl;
 //    printAST(mom);
     
     if (!mom) {
